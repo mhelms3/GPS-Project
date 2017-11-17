@@ -1,0 +1,27 @@
+
+        <?php
+        require_once (dirname(__FILE__).'/database/SQL_UtilityFunctions.php');
+        require_once (dirname(__FILE__).'/database/SQL_UserFunctions.php');
+        require_once (dirname(__FILE__).'/database/SQL_ProjectFunctions.php');
+
+        $lat = $_POST['lat'];
+        $lon = $_POST['lon'];
+        $solutionRow = getLocations($lat, $lon);
+            require_once ('SQL_UtilityFunctions.php');
+            
+            $conn = dbConnect();
+            $locations = getLocations($conn);
+            
+            echo("<H2> Locations </H2>");
+            foreach($locations as $row)
+            { 
+                echo('<br>');
+                foreach($row as $returnValue)
+                {
+                    echo($returnValue);
+                    echo(" ");
+                }
+            }
+            dbDrop($conn);
+        ?>
+
